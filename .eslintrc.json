@@ -4,6 +4,7 @@
         "node": true
     },
     "extends": [
+        "airbnb-base",
         "@kensho-technologies/eslint-config"
     ],
     "parser": "@typescript-eslint/parser",

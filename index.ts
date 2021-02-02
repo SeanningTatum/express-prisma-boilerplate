@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import * as bodyParser from "body-parser";
 import express, { Request } from "express";
-import userRoutes from './src/v1/user/user.routes'
+import userRoutes from './src/api/v1/user/user.routes'
 const prisma = new PrismaClient();
 const app = express();
 
