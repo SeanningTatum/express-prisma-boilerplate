@@ -35,7 +35,7 @@ async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Respo
 
     return res.json({
       code: 200,
-      message: 'Created user successfully',
+      message: 'Created Post successfully',
       body: result,
     });
   } catch (err) {
