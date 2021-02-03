@@ -1,9 +1,19 @@
-import { PrismaClient } from '@prisma/client';
+// MARK:- Imports
+import { PrismaClient, User } from '@prisma/client';
 import { Request, Response } from 'express';
+
+import { GenericReturn } from '../../../types/GenericReturn';
 
 const prisma = new PrismaClient();
 
-async function createUser(req: Request, res: Response) {
+// MARK:- Types
+interface QueryParams {}
+
+interface ReturnValue extends GenericReturn<User> {}
+
+
+// MARK:- Function
+async function createUser(req: Request<QueryParams, {}, User>, res: Response<ReturnValue>) {
   try {
     const result = await prisma.user.create({
       data: {
@@ -11,7 +21,11 @@ async function createUser(req: Request, res: Response) {
       },
     });
 
-    return res.json(result);
+    return res.json({
+      code: 200,
+      message: 'Created user successfully',
+      body: result,
+    });
   } catch (err) {
     return res.json({
       code: err.code || 500,
