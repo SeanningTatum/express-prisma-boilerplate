@@ -11,7 +11,6 @@ interface QueryParams {}
 
 interface ReturnValue extends GenericReturn<User> {}
 
-
 // MARK:- Function
 async function createUser(req: Request<QueryParams, {}, User>, res: Response<ReturnValue>) {
   try {

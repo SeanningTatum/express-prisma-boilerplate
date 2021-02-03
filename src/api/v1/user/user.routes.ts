@@ -1,10 +1,10 @@
-import { Router } from "express";
-import getUsers from "./getUsers";
-import createUser from './createUser'
+import { Router } from 'express';
+import getUsers from './getUsers';
+import createUser from './createUser';
 
 const router = Router();
 
-router.get("/", getUsers);
-router.post("/", createUser)
+router.get('/', getUsers);
+router.post('/', createUser);
 
-export default router
+export default router;
