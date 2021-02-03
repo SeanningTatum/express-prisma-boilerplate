@@ -1,3 +1,4 @@
+import './moduleAlias';
 import * as bodyParser from 'body-parser';
 import express from 'express';
 import userRoutes from './api/v1/user/user.routes';

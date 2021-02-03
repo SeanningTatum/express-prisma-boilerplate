@@ -1,8 +1,8 @@
 // MARK:- Imports
-import { Post, PrismaClient, User } from '@prisma/client';
+import { Post, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 
-import { GenericReturn } from '../../../types/GenericReturn';
+import { GenericReturn } from '~/types/GenericReturn';
 
 const prisma = new PrismaClient();
 
@@ -17,21 +17,19 @@ interface RequestBody {
 
 interface ReturnValue extends GenericReturn<Post> {}
 
-
 // MARK:- Function
 async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>) {
-
-    const {title, content, userId} = req.body
+  const { title, content, userId } = req.body;
 
   try {
     const result = await prisma.post.create({
-        data: {
-            title,
-            content,
-            published: false,
-            author: { connect: { id: userId } }
-        }
-    })
+      data: {
+        title,
+        content,
+        published: false,
+        author: { connect: { id: userId } },
+      },
+    });
 
     return res.json({
       code: 200,

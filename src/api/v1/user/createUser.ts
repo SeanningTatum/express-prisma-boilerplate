@@ -2,7 +2,7 @@
 import { PrismaClient, User } from '@prisma/client';
 import { Request, Response } from 'express';
 
-import { GenericReturn } from '../../../types/GenericReturn';
+import { GenericReturn } from '~/types/GenericReturn';
 
 const prisma = new PrismaClient();
 

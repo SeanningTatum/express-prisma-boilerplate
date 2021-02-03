@@ -1,16 +1,20 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User } from '@prisma/client';
 import { Request, Response } from 'express';
+
+import { GenericReturn } from '~/types/GenericReturn';
 
 const prisma = new PrismaClient();
 
-async function getUsers(req: Request, res: Response) {
+type ReturnValue = GenericReturn<User[]>
+
+async function getUsers(req: Request, res: Response<ReturnValue>) {
   try {
     const result = await prisma.user.findMany();
 
     return res.json({
-      data: result,
-      status: 200,
+      code: 200,
       message: 'Users retrieved successfully',
+      body: result,
     });
   } catch (err) {
     return res.json({
