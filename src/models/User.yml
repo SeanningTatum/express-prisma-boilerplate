@@ -1,0 +1,17 @@
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: number
+          format: id
+        email:
+          type: string
+          format: email
+        name:
+          type: string

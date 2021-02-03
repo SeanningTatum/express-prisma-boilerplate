@@ -29,7 +29,7 @@ const swaggerOptions: swaggerJSDoc.Options = {
       ],
     },
   },
-  apis: ['src/api/v1/**/**/*.yml', 'src/api/v1/**/*.ts', 'src/models/_swagger_/*.yml'],
+  apis: ['src/api/v1/**/**/*.yml', 'src/api/v1/**/*.ts', 'src/models/*.yml'],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
