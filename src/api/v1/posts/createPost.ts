@@ -10,9 +10,9 @@ const prisma = new PrismaClient();
 interface QueryParams {}
 
 interface RequestBody {
-    title: string;
-    content: string;
-    userId: number;
+  title: string;
+  content: string;
+  userId: number;
 }
 
 interface ReturnValue extends GenericReturn<Post> {}
