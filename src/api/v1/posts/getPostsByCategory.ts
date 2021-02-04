@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 // MARK:- Types
 interface QueryParams {
-  userId: number;
+  categoryName: string;
 }
 
 interface RequestBody {
@@ -18,15 +18,17 @@ interface RequestBody {
 interface ReturnValue extends GenericReturn<Post[]> {}
 
 // MARK:- Function
-async function getPostsByUser(
+async function getPostsByCategory(
   req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>,
 ) {
-  const { userId } = req.params;
+  const { categoryName } = req.params;
 
   try {
-    const result = await prisma.user.findUnique({
-      where: { id: userId },
-    }).posts();
+    const result = await prisma.post.findMany({
+      where: {
+        categories: { every: { name: categoryName } },
+      },
+    });
 
     return res.json({
       code: 200,
@@ -41,4 +43,4 @@ async function getPostsByUser(
   }
 }
 
-export default getPostsByUser;
+export default getPostsByCategory;

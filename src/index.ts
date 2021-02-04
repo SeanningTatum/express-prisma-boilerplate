@@ -4,6 +4,7 @@ import express from 'express';
 import swaggerUI from 'swagger-ui-express';
 import userRoutes from './api/v1/user/user.routes';
 import postRoutes from './api/v1/posts/posts.routes';
+import categoryRoutes from './api/v1/category/category.routes';
 import swaggerDocs from './config/swagger';
 import { PORT } from './constants/config';
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/post', postRoutes);
+app.use('/api/v1/category', categoryRoutes);
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 

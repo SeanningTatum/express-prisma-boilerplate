@@ -7,19 +7,26 @@ import { GenericReturn } from '~/types/GenericReturn';
 const prisma = new PrismaClient();
 
 // MARK:- Types
-interface QueryParams {}
+interface QueryParams {
+  userId: string;
+}
 
 interface RequestBody {
   title: string;
   content: string;
-  userId: number;
+
+  categoryName: string;
 }
 
 interface ReturnValue extends GenericReturn<Post> {}
 
 // MARK:- Function
 async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>) {
-  const { title, content, userId } = req.body;
+  const {
+    title, content, categoryName,
+  } = req.body;
+
+  const { userId } = req.params;
 
   try {
     const result = await prisma.post.create({
@@ -27,7 +34,8 @@ async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Respo
         title,
         content,
         published: false,
-        author: { connect: { id: userId } },
+        author: { connect: { id: +userId } },
+        categories: { connect: { name: categoryName } },
       },
     });
 

@@ -40,6 +40,7 @@
   "scripts": {
     "studio": "npx prisma studio",
     "dev": "npx nodemon --config nodemon.json src/index.ts",
+    "migrate": "npx prisma migrate dev --name init --preview-feature",
     "fix": "eslint --fix .",
     "build": "tsc -p ."
   },

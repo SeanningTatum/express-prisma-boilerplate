@@ -1,5 +1,5 @@
 // MARK:- Imports
-import { Post, PrismaClient } from '@prisma/client';
+import { PrismaClient, Category } from '@prisma/client';
 import { Request, Response } from 'express';
 
 import { GenericReturn } from '~/types/GenericReturn';
@@ -8,29 +8,25 @@ const prisma = new PrismaClient();
 
 // MARK:- Types
 interface QueryParams {
-  userId: number;
+    categoryId: number;
 }
 
 interface RequestBody {
 
 }
 
-interface ReturnValue extends GenericReturn<Post[]> {}
+interface ReturnValue extends GenericReturn<Category[]> {}
 
 // MARK:- Function
-async function getPostsByUser(
+async function getCategories(
   req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>,
 ) {
-  const { userId } = req.params;
-
   try {
-    const result = await prisma.user.findUnique({
-      where: { id: userId },
-    }).posts();
+    const result = await prisma.category.findMany();
 
     return res.json({
       code: 200,
-      message: 'Successfully fetched posts by user',
+      message: 'Successfully fetched categories',
       body: result,
     });
   } catch (err) {
@@ -41,4 +37,4 @@ async function getPostsByUser(
   }
 }
 
-export default getPostsByUser;
+export default getCategories;
