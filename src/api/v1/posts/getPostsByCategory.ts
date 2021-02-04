@@ -21,12 +21,12 @@ interface ReturnValue extends GenericReturn<Post[]> {}
 async function getPostsByCategory(
   req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>,
 ) {
-  const { categoryName } = req.params;
+  const { categoryName = '' } = req.query;
 
   try {
     const result = await prisma.post.findMany({
       where: {
-        categories: { every: { name: categoryName } },
+        categories: { every: { name: String(categoryName) } },
       },
     });
 

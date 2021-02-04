@@ -5,8 +5,8 @@ import getPostsByUser from './getPostsByUser';
 
 const router = Router();
 
-router.get('/:categoryName', getPostsByCategory);
-router.get('/', getPostsByUser);
+router.get('/', getPostsByCategory);
+router.get('/:userId', getPostsByUser);
 router.post('/:userId', createPost);
 
 export default router;

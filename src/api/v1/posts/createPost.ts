@@ -35,7 +35,14 @@ async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Respo
         content,
         published: false,
         author: { connect: { id: +userId } },
-        categories: { connect: { name: categoryName } },
+        categories: {
+          connectOrCreate: {
+            where: { name: categoryName },
+            create: {
+              name: categoryName,
+            },
+          },
+        },
       },
     });
 
