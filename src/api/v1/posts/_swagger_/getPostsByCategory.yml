@@ -1,20 +1,14 @@
 paths:
-  /api/v1/user/:
-    post:
-      tags: [User]
-      summary: POST Create User
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - email
-              properties:
-                email:
-                  type: string
-                name:
-                  type: string
+  /api/v1/post/:
+    get:
+      tags: [Post]
+      summary: GET Post by Category
+      parameters:
+        - in: query
+          name: categoryName
+          schema:
+            type: string
+          description: The unique name of the category
       responses:
         200:
           description: Success
@@ -23,7 +17,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/responses/UserResponse"
+                  $ref: "#/components/responses/PostWithCategoryArrayResponse"
         400:
           description: Invalid Body or Params
         401:

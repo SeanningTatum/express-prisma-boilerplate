@@ -1,0 +1,96 @@
+components:
+  schemas:
+    Post:
+      title: Post
+      type: object
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - title
+        - authorId
+      properties:
+        id:
+          type: number
+          format: id
+        title:
+          type: string
+        content:
+          type: string
+        published:
+          type: boolean
+        authorId:
+          type: number
+          format: id
+    PostWithCategory:
+      title: PostWithCategory
+      type: object
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - title
+        - authorId
+      properties:
+        id:
+          type: number
+          format: id
+        title:
+          type: string
+        content:
+          type: string
+        published:
+          type: boolean
+        authorId:
+          type: number
+          format: id
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/Category"
+
+  responses:
+    PostResponse:
+      title: PostResponse
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        body:
+          $ref: "#/components/schemas/Post"
+    PostArrayResponse:
+      title: PostArrayResponse
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        body:
+          type: array
+          items:
+            $ref: "#/components/schemas/Post"
+    PostWithCategoryResponse:
+      title: PostWithCategoryResponse
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        body:
+          $ref: "#/components/schemas/PostWithCategory"
+    PostWithCategoryArrayResponse:
+      title: PostWithCategoryArrayResponse
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        body:
+          type: array
+          items:
+            $ref: "#/components/schemas/PostWithCategory"

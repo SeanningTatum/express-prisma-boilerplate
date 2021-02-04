@@ -1,24 +1,21 @@
 components:
   schemas:
-    User:
-      title: User
+    Category:
+      title: Category
       type: object
       required:
         - id
-        - email
+        - name
       properties:
         id:
           type: number
           format: id
-        email:
-          type: string
-          format: email
         name:
           type: string
 
   responses:
-    UserResponse:
-      title: UserResponse
+    CategoryResponse:
+      title: Category
       type: object
       properties:
         code:
@@ -26,9 +23,9 @@ components:
         message:
           type: string
         body:
-          $ref: "#/components/schemas/User"
-    UserArrayResponse:
-      title: UserArrayResponse
+          $ref: "#/components/schemas/Category"
+    CategoryArrayResponse:
+      title: CategoryArrayResponse
       type: object
       properties:
         code:
@@ -38,4 +35,4 @@ components:
         body:
           type: array
           items:
-            $ref: "#/components/schemas/User"
+            $ref: "#/components/schemas/Category"
