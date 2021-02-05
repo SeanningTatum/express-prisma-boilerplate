@@ -23,4 +23,4 @@ app.listen(PORT, () => console.log(
     ⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`,
 ));
 
-// TODO: Add validation, plop-templates and deployment options
+// TODO: Add plop-templates, tests and deployment options

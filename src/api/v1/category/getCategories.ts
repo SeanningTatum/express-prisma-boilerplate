@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 // MARK:- Types
 interface QueryParams {
-    categoryId: number;
+  categoryId: number;
 }
 
 interface RequestBody {
