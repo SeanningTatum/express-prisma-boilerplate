@@ -2,7 +2,7 @@ paths:
   /api/v1/post/:
     get:
       tags: [Post]
-      summary: GET Post by Category
+      summary: Fetch Posts based on Category
       parameters:
         - in: query
           name: categoryName

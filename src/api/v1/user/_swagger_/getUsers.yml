@@ -2,7 +2,7 @@ paths:
   /api/v1/user/:
     get:
       tags: [User]
-      summary: Get Users
+      summary: Fetch All Users
       responses:
         200:
           description: Success

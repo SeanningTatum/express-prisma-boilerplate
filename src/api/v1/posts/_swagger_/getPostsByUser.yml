@@ -2,7 +2,7 @@ paths:
   /api/v1/post/{userId}:
     get:
       tags: [Post]
-      summary: GET Posts by User
+      summary: Fetch posts by User
       parameters:
         - in: path
           name: userId

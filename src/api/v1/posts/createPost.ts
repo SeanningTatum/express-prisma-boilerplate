@@ -1,6 +1,7 @@
 // MARK:- Imports
 import { Post, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { Joi } from 'express-validation';
 
 import { GenericReturn } from '~/types/GenericReturn';
 
@@ -13,12 +14,24 @@ interface QueryParams {
 
 interface RequestBody {
   title: string;
-  content: string;
+  content?: string;
 
   categoryName: string;
 }
 
 interface ReturnValue extends GenericReturn<Post> {}
+
+// MARK:- Validation
+export const createPostValidation = {
+  params: Joi.object({
+    userId: Joi.number().required(),
+  }),
+  body: Joi.object({
+    title: Joi.string().required(),
+    content: Joi.string(),
+    categoryName: Joi.string().required(),
+  }),
+};
 
 // MARK:- Function
 async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Response<ReturnValue>) {
@@ -52,6 +65,13 @@ async function createPost(req: Request<QueryParams, {}, RequestBody>, res: Respo
       body: result,
     });
   } catch (err) {
+    if (err.code === 'P2016') {
+      return res.json({
+        code: 404,
+        message: 'User ID does not exist!',
+      });
+    }
+
     return res.json({
       code: err.code || 500,
       message: err.message,

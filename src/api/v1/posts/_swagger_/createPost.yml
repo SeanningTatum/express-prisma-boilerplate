@@ -1,19 +1,28 @@
 paths:
-  /api/v1/post/:
+  /api/v1/post/{userId}:
     post:
       tags: [Post]
-      summary: POST Create Post
+      summary: Create Post
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          description: The ID of the user
       requestBody:
         content:
           application/json:
             schema:
               type: object
               required:
-                - email
+                - title
+                - categoryName
               properties:
-                email:
+                title:
                   type: string
-                name:
+                content:
+                  type: string
+                categoryName:
                   type: string
       responses:
         200:

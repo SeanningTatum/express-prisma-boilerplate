@@ -2,7 +2,7 @@ paths:
   /api/v1/user/:
     post:
       tags: [User]
-      summary: POST Create User
+      summary: Create User
       requestBody:
         content:
           application/json:
