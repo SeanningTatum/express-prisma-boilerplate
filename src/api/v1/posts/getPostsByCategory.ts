@@ -1,6 +1,7 @@
 // MARK:- Imports
 import { Post, PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { Joi, ValidationError } from 'express-validation';
 
 import { GenericReturn } from '~/types/GenericReturn';
 
@@ -16,6 +17,13 @@ interface RequestBody {
 }
 
 interface ReturnValue extends GenericReturn<Post[]> {}
+
+// MARK:- Validation
+export const getPostsByCategoryValidation = {
+  query: Joi.object({
+    categoryName: Joi.string().required(),
+  }),
+};
 
 // MARK:- Function
 async function getPostsByCategory(
@@ -36,6 +44,13 @@ async function getPostsByCategory(
       body: result,
     });
   } catch (err) {
+    if (err instanceof ValidationError) {
+      return res.status(err.statusCode).json({
+        code: err.statusCode,
+        message: err.message,
+      });
+    }
+
     return res.json({
       code: err.code || 500,
       message: err.message,
